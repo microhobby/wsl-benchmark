@@ -25,6 +25,7 @@ dmesg | grep 'Boot Benchmark' >> /home/$(uname -r).log
 # get the dmesg logs
 echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
 echo "👢👢 KERNEL LOG" >> /home/$(uname -r).log
+echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
 
 EMERG=$(dmesg -r | grep -c '<0>')
 ALERT=$(dmesg -r | grep -c '<1>')
@@ -43,3 +44,5 @@ echo "⚠️ WARN      x$WARN" >> /home/$(uname -r).log
 echo "🔔 NOTICE    x$NOTICE" >> /home/$(uname -r).log
 echo "ℹ️ INFO      x$INFO" >> /home/$(uname -r).log
 echo "🪲 BUG       x$BUG" >> /home/$(uname -r).log
+
+echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
