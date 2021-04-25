@@ -7,10 +7,16 @@ echo "Boot Benchmark" > /dev/kmsg
 cat /proc/version > /home/$(uname -r).log
 
 # get cpu usage since boot
+echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
+echo "🔥 CPU USAGE" >> /home/$(uname -r).log
 awk '/cpu /{print 100*($2+$4)/($2+$4+$5)}' /proc/stat >> /home/$(uname -r).log
 
 # get memory usage
+echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
+echo "💽 MEMORY USAGE" >> /home/$(uname -r).log
 free >> /home/$(uname -r).log
 
 # get the timestamp
+echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
+echo "👢 BOOT TIME" >> /home/$(uname -r).log
 dmesg | grep 'Boot Benchmark' >> /home/$(uname -r).log
