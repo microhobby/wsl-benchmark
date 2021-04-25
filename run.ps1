@@ -30,9 +30,20 @@ echo "--------------------------------------------------------------------------
 wsl cat '/home/$(uname -r).log'
 echo "-----------------------------------------------------------------------------------------------------------------"
 
-wsl bash -c 'echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log && \
-/usr/bin/wslfetch >> /home/$(uname -r).log && \
-echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log'
+wsl bash -c 'echo "----------------------------------------------------------------------------------------" && \
+/usr/bin/wslfetch -c && \
+echo "----------------------------------------------------------------------------------------"'
+
+echo "💾 LOGGING"
+# creating log file
+$month = (Get-Date).Month
+$day = (Get-Date).Day
+$year = (Get-Date).Year
+$hour = (Get-Date).Hour
+$minutes = (Get-Date).Minute
+$seconds = (Get-Date).Second
+
+wsl cat '/home/$(uname -r).log' > "$month-$day-$year-$hour-$minutes-$seconds.log" 
 
 echo "🧼 CLEANUP"
 # cleanup
