@@ -21,3 +21,8 @@ free -h >> /home/$(uname -r).log
 echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
 echo "👢 BOOT TIME" >> /home/$(uname -r).log
 dmesg | grep 'Boot Benchmark' >> /home/$(uname -r).log
+
+# get system info
+echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
+wslfetch >> /home/$(uname -r).log
+echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
