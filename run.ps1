@@ -2,7 +2,7 @@
 echo "⚙️ CONFIGURE"
 # configure
 wsl bash -c 'cd /home && \
-git clone https://github.com/microhobby/wsl-benchmark.git && \
+sudo git clone https://github.com/microhobby/wsl-benchmark.git && \
 cd wsl-benchmark && \
 sudo ./install.sh'
 
@@ -12,10 +12,11 @@ wsl --shutdown
 wsl --shutdown
 
 echo "🧪 TESTING"
+echo "-----------------------------------------------------------------------------------------------------------------"
 # runs
 wsl cat '/home/$(uname -r).log'
+echo "-----------------------------------------------------------------------------------------------------------------"
 
 echo "🧼 CLEANUP"
 # cleanup
-wsl bash -c 'sudo cp /etc/wsl.conf.back /etc/wsl.conf'
-wsl bash -c 'sudo rm -r /home/wsl-benchmark'
+wsl bash -c 'sudo cp /etc/wsl.conf.back /etc/wsl.conf && sudo rm -r /home/wsl-benchmark'
