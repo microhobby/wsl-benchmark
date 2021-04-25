@@ -21,3 +21,25 @@ free -h >> /home/$(uname -r).log
 echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
 echo "👢 BOOT TIME" >> /home/$(uname -r).log
 dmesg | grep 'Boot Benchmark' >> /home/$(uname -r).log
+
+# get the dmesg logs
+echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
+echo "👢👢 KERNEL LOG" >> /home/$(uname -r).log
+
+EMERG=$(dmesg -r | grep -c '<0>')
+ALERT=$(dmesg -r | grep -c '<1>')
+CRIT=$(dmesg -r | grep -c '<2>')
+ERR=$(dmesg -r | grep -c '<3>')
+WARN=$(dmesg -r | grep -c '<4>')
+NOTICE=$(dmesg -r | grep -c '<5>')
+INFO=$(dmesg -r | grep -c '<6>')
+BUG=$(dmesg -r | grep -c '<7>')
+
+echo "🔥 EMERGENCY x$EMERG" >> /home/$(uname -r).log
+echo "🚨 ALERT     x$ALERT" >> /home/$(uname -r).log
+echo "💀 CRITICAL  x$CRIT" >> /home/$(uname -r).log
+echo "❌ ERROR     x$ERR" >> /home/$(uname -r).log
+echo "⚠️ WARN      x$WARN" >> /home/$(uname -r).log
+echo "🔔 NOTICE    x$NOTICE" >> /home/$(uname -r).log
+echo "ℹ️ INFO      x$INFO" >> /home/$(uname -r).log
+echo "🪲 BUG       x$BUG" >> /home/$(uname -r).log
