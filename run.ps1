@@ -11,6 +11,9 @@ echo "📴 TURNING OFF"
 wsl --shutdown
 wsl --shutdown
 
+# clear screen
+clear
+
 echo "🧪 TESTING"
 echo "-----------------------------------------------------------------------------------------------------------------"
 # runs
