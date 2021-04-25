@@ -30,7 +30,14 @@ echo "--------------------------------------------------------------------------
 wsl cat '/home/$(uname -r).log'
 echo "-----------------------------------------------------------------------------------------------------------------"
 
+wsl bash -c 'echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log && \
+/usr/bin/wslfetch >> /home/$(uname -r).log && \
+echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log'
+
 echo "🧼 CLEANUP"
 # cleanup
 wsl bash -c 'sudo cp /etc/wsl.conf.back /etc/wsl.conf && sudo rm -r /home/wsl-benchmark'
-cp ~\.wslconfig.back ~\.wslconfig
+
+If ($args[0] -ne $null) {
+    cp ~\.wslconfig.back ~\.wslconfig
+}
