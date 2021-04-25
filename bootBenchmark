@@ -24,5 +24,5 @@ dmesg | grep 'Boot Benchmark' >> /home/$(uname -r).log
 
 # get system info
 echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
-wslfetch >> /home/$(uname -r).log
+/usr/bin/wslfetch >> /home/$(uname -r).log
 echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
