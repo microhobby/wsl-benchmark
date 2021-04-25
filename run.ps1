@@ -10,11 +10,18 @@ If ($args[0] -ne $null) {
 }
 
 echo "⚙️ CONFIGURE"
-# configure
-wsl bash -c 'cd /home && \
+# configure with password input
+If ($env:WSL_PASSWORD -ne $null) {
+    wsl bash -c 'cd /home && \
+wslvar WSL_PASSWORD | sudo -S git clone https://github.com/microhobby/wsl-benchmark.git && \
+cd wsl-benchmark && \
+wslvar WSL_PASSWORD | sudo -S ./install.sh'
+} else {
+    wsl bash -c 'cd /home && \
 sudo git clone https://github.com/microhobby/wsl-benchmark.git && \
 cd wsl-benchmark && \
 sudo ./install.sh'
+}
 
 echo "📴 TURNING OFF"
 # shutdown
@@ -28,7 +35,6 @@ echo "🧪 TESTING"
 echo "-----------------------------------------------------------------------------------------------------------------"
 # runs
 wsl cat '/home/$(uname -r).log'
-echo "-----------------------------------------------------------------------------------------------------------------"
 
 wsl bash -c 'echo "----------------------------------------------------------------------------------------" && \
 /usr/bin/wslfetch -c && \
@@ -47,7 +53,11 @@ wsl cat '/home/$(uname -r).log' > "$month-$day-$year-$hour-$minutes-$seconds.log
 
 echo "🧼 CLEANUP"
 # cleanup
-wsl bash -c 'sudo cp /etc/wsl.conf.back /etc/wsl.conf && sudo rm -r /home/wsl-benchmark'
+If ($env:WSL_PASSWORD -ne $null) {
+    wsl bash -c 'wslvar WSL_PASSWORD | sudo -S cp /etc/wsl.conf.back /etc/wsl.conf && wslvar WSL_PASSWORD | sudo -S rm -r /home/wsl-benchmark'
+} else {
+    wsl bash -c 'sudo cp /etc/wsl.conf.back /etc/wsl.conf && sudo rm -r /home/wsl-benchmark'
+}
 
 If ($args[0] -ne $null) {
     cp ~\.wslconfig.back ~\.wslconfig
