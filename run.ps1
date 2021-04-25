@@ -18,3 +18,4 @@ wsl cat '/home/$(uname -r).log'
 echo "🧼 CLEANUP"
 # cleanup
 wsl bash -c 'sudo cp /etc/wsl.conf.back /etc/wsl.conf'
+wsl bash -c 'sudo rm -r /home/wsl-benchmark'
