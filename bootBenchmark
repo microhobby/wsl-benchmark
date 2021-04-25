@@ -15,6 +15,7 @@ awk '/cpu /{print 100*($2+$4)/($2+$4+$5)}' /proc/stat >> /home/$(uname -r).log
 echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
 echo "💽 MEMORY USAGE" >> /home/$(uname -r).log
 free >> /home/$(uname -r).log
+free -h >> /home/$(uname -r).log
 
 # get the timestamp
 echo "----------------------------------------------------------------------------------------" >> /home/$(uname -r).log
