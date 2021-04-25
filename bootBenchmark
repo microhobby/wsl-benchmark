@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# boot ok timestamp
+echo "Boot Benchmark" > /dev/kmsg
+
+# create the data file
+cat /proc/version > /home/castello/$(uname -r).log
+
+# get cpu usage since boot
+awk '/cpu /{print 100*($2+$4)/($2+$4+$5)}' /proc/stat >> /home/castello/$(uname -r).log
+
+# get memory usage
+free >> /home/castello/$(uname -r).log
+
+# get the timestamp
+dmesg | grep 'Boot Benchmark'
